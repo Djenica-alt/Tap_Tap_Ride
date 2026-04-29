@@ -1,0 +1,274 @@
+/* Styles globaux pour les pages d'authentification */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-card__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #667eea;
+  margin-bottom: 8px;
+}
+
+.auth-card__header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.auth-card__subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.input-group input {
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.input-group input::placeholder {
+  color: #9ca3af;
+}
+
+.tap-button {
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.tap-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.tap-button:active {
+  transform: translateY(0);
+}
+
+.auth-card__footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.auth-card__footer p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.auth-link {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 32px 24px;
+  }
+
+  .auth-card__header h1 {
+    font-size: 24px;
+  }
+
+  .input-group input {
+    padding: 12px 14px;
+  }
+
+  .tap-button {
+    padding: 14px 20px;
+  }
+}
+
+/* Input wrapper */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Error messages */
+.error-message {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+}
+
+.input-group input.error {
+  border-color: #ef4444;
+}
+
+.input-group input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+/* Forgot password link */
+.forgot-password {
+  text-align: right;
+  margin-top: -12px;
+}
+
+.forgot-password a {
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+/* Terms checkbox */
+.terms-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.terms-checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #667eea;
+  cursor: pointer;
+}
+
+.terms-checkbox span {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.terms-checkbox a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+/* Button disabled state */
+.tap-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Loading spinner (optional enhancement) */
+.tap-button.loading {
+  position: relative;
+  color: transparent;
+}
+
+.tap-button.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
