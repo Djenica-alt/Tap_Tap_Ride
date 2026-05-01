@@ -1,0 +1,164 @@
+.profile-page {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #f2f4f7;
+}
+
+/* ✅ SIDEBAR MODE (FIXED OVER MAP) */
+.profile-page.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+
+  background: rgba(0, 0, 0, 0.3); /* overlay effect */
+  z-index: 9999;
+  padding: 0;
+}
+
+/* Sidebar card */
+.profile-page.sidebar .profile-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 24px;
+  background: #ffffff;
+}
+
+.profile-page.sidebar .profile-header {
+  margin-bottom: 18px;
+}
+
+.profile-page.sidebar .profile-user-card {
+  margin-bottom: 20px;
+}
+
+.profile-page.sidebar .profile-avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.profile-page.sidebar .profile-menu-item {
+  padding: 16px 18px;
+}
+
+/* MAIN CARD */
+.profile-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 28px;
+}
+
+/* HEADER */
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.profile-back {
+  border: none;
+  background: #e5e7eb;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.profile-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* USER CARD */
+.profile-user-card {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #10b981;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.15rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-user-info {
+  min-width: 0;
+}
+
+.profile-name {
+  margin: 0 0 6px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.profile-email {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* MENU */
+.profile-menu {
+  display: grid;
+  gap: 12px;
+}
+
+.profile-menu-item {
+  text-align: left;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.profile-menu-item:hover {
+  background: #f8fafc;
+}
+
+.profile-menu-item.danger {
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.16);
+}
+
+/* ✅ FIX MAP LAYER (VERY IMPORTANT) */
+.leaflet-container {
+  z-index: 1;
+}
