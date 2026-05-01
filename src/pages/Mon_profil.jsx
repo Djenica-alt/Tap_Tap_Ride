@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './Mon_profil.css'
-import { saveProfilePicture, getProfilePicture } from '../utils/profilePictureManager'
 
 export default function Mon_profil({ onBack, onOpenHistorique }) {
   const [profilePicture, setProfilePicture] = useState(null)
@@ -8,13 +7,14 @@ export default function Mon_profil({ onBack, onOpenHistorique }) {
 
   useEffect(() => {
     // Load profile picture from localStorage on component mount
-    const savedPicture = getProfilePicture()
+    const savedPicture = localStorage.getItem('profilePicture')
+
     if (savedPicture) {
       setProfilePicture(savedPicture)
     }
   }, [])
 
-  const handleProfilePictureChange = async (event) => {
+  const handleProfilePictureChange = (event) => {
     const file = event.target.files?.[0]
     if (!file) return
 
@@ -31,18 +31,26 @@ export default function Mon_profil({ onBack, onOpenHistorique }) {
     }
 
     setIsLoading(true)
-    try {
-      const pictureUrl = await saveProfilePicture(file)
-      setProfilePicture(pictureUrl)
-    } catch (error) {
-      alert('Failed to upload profile picture: ' + error.message)
-    } finally {
+
+    const reader = new FileReader()
+
+    reader.onloadend = () => {
+      const base64Image = reader.result
+
+      // Save to localStorage
+      localStorage.setItem('profilePicture', base64Image)
+
+      setProfilePicture(base64Image)
       setIsLoading(false)
     }
+
+    reader.readAsDataURL(file)
   }
+
   return (
     <div className="mon-profil-page">
       <div className="mon-profil-card">
+
         <header className="mon-profil-header">
           <button type="button" className="mon-profil-back" onClick={onBack}>
             ← Mon Profil
@@ -50,15 +58,20 @@ export default function Mon_profil({ onBack, onOpenHistorique }) {
         </header>
 
         <div className="mon-profil-user-card">
-          <div className="mon-profil-avatar" onClick={() => !isLoading && document.getElementById('profilePictureInput').click()}>
+          <div
+            className="mon-profil-avatar"
+            onClick={() => !isLoading && document.getElementById('profilePictureInput').click()}
+          >
             {profilePicture ? (
               <img src={profilePicture} alt="Profile" />
             ) : (
               'SA'
             )}
+
             <div className="mon-profil-avatar-overlay">
               {isLoading ? 'Uploading...' : 'Upload'}
             </div>
+
             <input
               id="profilePictureInput"
               type="file"
@@ -68,6 +81,7 @@ export default function Mon_profil({ onBack, onOpenHistorique }) {
               disabled={isLoading}
             />
           </div>
+
           <div className="mon-profil-user-info">
             <div className="mon-profil-name">Alce Steevens</div>
             <div className="mon-profil-status">Membre depuis mars 2022</div>
@@ -93,19 +107,23 @@ export default function Mon_profil({ onBack, onOpenHistorique }) {
 
         <section className="mon-profil-activity">
           <div className="mon-profil-section-title">Activité</div>
+
           <div className="mon-profil-activity-grid">
             <div className="mon-profil-activity-card">
               <div className="mon-profil-activity-value">5</div>
               <div className="mon-profil-activity-label">Courses ce mois-ci</div>
             </div>
+
             <div className="mon-profil-activity-card">
               <div className="mon-profil-activity-value">1 105</div>
               <div className="mon-profil-activity-label">HTG dépensés</div>
             </div>
+
             <div className="mon-profil-activity-card">
               <div className="mon-profil-activity-value">42</div>
               <div className="mon-profil-activity-label">Courses totales</div>
             </div>
+
             <div className="mon-profil-activity-card">
               <div className="mon-profil-activity-value">15</div>
               <div className="mon-profil-activity-label">Chauffeurs favoris</div>
