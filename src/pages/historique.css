@@ -55,7 +55,7 @@
 .historique-stat-value {
   font-size: 2rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #00BC7D;
 }
 
 .historique-section {
@@ -116,6 +116,7 @@
 
 .trip-price {
   text-align: right;
+  color: #00BC7D;
 }
 
 @media (max-width: 640px) {

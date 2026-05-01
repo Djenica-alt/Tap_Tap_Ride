@@ -36,7 +36,7 @@ export default function Historique({ onBack }) {
       <div className="historique-card">
         <header className="historique-header">
           <button type="button" className="historique-back" onClick={onBack}>
-            ← Historique de trajets
+            ← Home
           </button>
         </header>
 

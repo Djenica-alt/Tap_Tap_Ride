@@ -1,129 +1,124 @@
 import { useState, useEffect } from 'react'
 import Profil from './Profil'
-
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "../mapConfig"
+import historyIcon from "../assets/history.png"
 
-export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique }) {
+const HAITI_CENTER = [18.9712, -72.2852]
+
+const HAITI_BOUNDS = [
+  [17.0, -75.2],
+  [20.6, -71.0],
+]
+
+const HAITI_CITIES = [
+  "Port-au-Prince",
+  "Delmas",
+  "Pétion-Ville",
+  "Carrefour",
+  "Cap-Haïtien",
+  "Gonaïves",
+  "Les Cayes",
+  "Jacmel",
+  "Hinche",
+  "Saint-Marc",
+  "Petit-Goâve",
+  "Léogâne"
+]
+
+export default function Reservation({
+  onReserve,
+  onOpenProfile,
+  onOpenHistorique
+}) {
   const [selectedDriver, setSelectedDriver] = useState(null)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+
   const [departure, setDeparture] = useState('')
   const [destination, setDestination] = useState('')
   const [hasSearched, setHasSearched] = useState(false)
 
   const [userPosition, setUserPosition] = useState(null)
 
-  // 🆕 Ride coordinates
   const [pickup, setPickup] = useState(null)
   const [destinationCoords, setDestinationCoords] = useState(null)
 
   // 📍 GET USER LOCATION
   useEffect(() => {
+    if (!navigator.geolocation) {
+      setUserPosition(HAITI_CENTER)
+      return
+    }
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords
         setUserPosition([latitude, longitude])
       },
-      (err) => {
-        console.error(err)
-        setUserPosition([18.5944, -72.3074])
-      },
+      () => setUserPosition(HAITI_CENTER),
       {
         enableHighAccuracy: true,
-        timeout: 10000,
+        timeout: 8000,
         maximumAge: 0,
       }
     )
   }, [])
 
-  // 🖱️ MAP CLICK HANDLER
+  // 🚫 HAITI LIMIT
+  function isInHaiti(lat, lng) {
+    return (
+      lat >= 17.0 &&
+      lat <= 20.6 &&
+      lng >= -75.2 &&
+      lng <= -71.0
+    )
+  }
+
+  // 🗺 MAP CLICK
   function MapClickHandler() {
     useMapEvents({
       click(e) {
-        const coords = [e.latlng.lat, e.latlng.lng]
+        const { lat, lng } = e.latlng
+
+        if (!isInHaiti(lat, lng)) return
+
+        const coords = [lat, lng]
 
         if (!pickup) {
           setPickup(coords)
-          setDeparture("Point sélectionné sur la carte")
+          setDeparture("Point sélectionné en Haïti")
         } else if (!destinationCoords) {
           setDestinationCoords(coords)
-          setDestination("Destination sélectionnée")
+          setDestination("Destination sélectionnée en Haïti")
         } else {
-          // reset
           setPickup(coords)
           setDestinationCoords(null)
-          setDeparture("Point sélectionné sur la carte")
+          setDeparture("Point sélectionné en Haïti")
           setDestination("")
         }
       },
     })
-
     return null
   }
 
   const drivers = [
-    {
-      name: 'Marc Antoine',
-      car: 'Toyota Corolla • AB-1234',
-      distance: '0.5 km',
-      rating: 4.7,
-      price: '220 HTG',
-      arrival: '8 min',
-    },
-    {
-      name: 'Jean Michel',
-      car: 'Nissan Sentra • EF-9012',
-      distance: '0.5 km',
-      rating: 5.0,
-      price: '160 HTG',
-      arrival: '3 min',
-    },
-    {
-      name: 'Marie Flores',
-      car: 'Hyundai Elantra • GH-3456',
-      distance: '1.2 km',
-      rating: 4.8,
-      price: '180 HTG',
-      arrival: '6 min',
-    },
-    {
-      name: 'Sophie Laurent',
-      car: 'Honda Civic • CD-5678',
-      distance: '0.5 km',
-      rating: 4.9,
-      price: '150 HTG',
-      arrival: '2 min',
-    },
+    { name: 'Marc Antoine', car: 'Toyota Corolla • AB-1234', distance: '0.5 km', rating: 4.7, price: '220 HTG', arrival: '8 min' },
+    { name: 'Jean Michel', car: 'Nissan Sentra • EF-9012', distance: '0.5 km', rating: 5.0, price: '160 HTG', arrival: '3 min' },
+    { name: 'Marie Flores', car: 'Hyundai Elantra • GH-3456', distance: '1.2 km', rating: 4.8, price: '180 HTG', arrival: '6 min' },
+    { name: 'Sophie Laurent', car: 'Honda Civic • CD-5678', distance: '0.5 km', rating: 4.9, price: '150 HTG', arrival: '2 min' },
   ]
 
-  const handleSearch = () => {
-    if ((pickup && destinationCoords) || (departure.trim() && destination.trim())) {
-      setHasSearched(true)
-    } else {
-      setHasSearched(false)
-    }
-  }
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch()
-    }
-  }
-
-  const handleInputChange = (value, type) => {
-    if (type === 'departure') {
-      setDeparture(value)
-    } else {
-      setDestination(value)
-    }
-  }
-
   const isFormValid =
-    (pickup && destinationCoords) ||
-    (departure.trim() && destination.trim())
+    departure && destination && departure !== destination
 
-  // ⏳ Loading
+  const handleSearch = () => {
+    const validMap = pickup && destinationCoords
+    const validSelect = departure && destination && departure !== destination
+
+    setHasSearched(validMap || validSelect)
+  }
+
   if (!userPosition) {
     return <div>Loading your location...</div>
   }
@@ -135,11 +130,23 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
         {/* HEADER */}
         <header className="reservation-header">
           <div className="reservation-brand">TapTap Ride</div>
-          <div
-            className="reservation-menu"
-            onClick={() => setIsProfileOpen(true)}
-          >
-            ☰
+
+          <div className="header-actions">
+
+            <div
+              className="history-icon"
+              onClick={() => onOpenHistorique?.()}
+            >
+              <img src={historyIcon} alt="Historique" />
+            </div>
+
+            <div
+              className="reservation-menu"
+              onClick={() => setIsProfileOpen(true)}
+            >
+              ☰
+            </div>
+
           </div>
         </header>
 
@@ -147,24 +154,22 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
         <section className="reservation-map-section">
           <MapContainer
             center={userPosition}
-            zoom={14}
+            zoom={12}
+            minZoom={7}
+            maxZoom={18}
+            maxBounds={HAITI_BOUNDS}
+            maxBoundsViscosity={1.0}
             className="reservation-map-card"
             style={{ height: "100%", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution="© OpenStreetMap contributors"
             />
 
             <MapClickHandler />
 
-            {/* User */}
             <Marker position={userPosition} />
-
-            {/* Pickup */}
             {pickup && <Marker position={pickup} />}
-
-            {/* Destination */}
             {destinationCoords && <Marker position={destinationCoords} />}
           </MapContainer>
         </section>
@@ -172,31 +177,28 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
         {/* SEARCH */}
         <section className="reservation-search-section">
           <div className="reservation-search">
-            <label className="search-box">
-              <span className="search-icon">📍</span>
-              <input
-                type="text"
-                placeholder="Point de départ"
-                value={departure}
-                onChange={(e) =>
-                  handleInputChange(e.target.value, 'departure')
-                }
-                onKeyDown={handleKeyPress}
-              />
-            </label>
 
-            <label className="search-box">
-              <span className="search-icon">🔎</span>
-              <input
-                type="text"
-                placeholder="Où allez-vous ?"
-                value={destination}
-                onChange={(e) =>
-                  handleInputChange(e.target.value, 'destination')
-                }
-                onKeyDown={handleKeyPress}
-              />
-            </label>
+            <select
+              value={departure}
+              onChange={(e) => setDeparture(e.target.value)}
+              className="search-box"
+            >
+              <option value="">Point de départ</option>
+              {HAITI_CITIES.map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
+
+            <select
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              className="search-box"
+            >
+              <option value="">Où allez-vous ?</option>
+              {HAITI_CITIES.map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
 
             <button
               className="search-button"
@@ -205,6 +207,7 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
             >
               Rechercher un trajet
             </button>
+
           </div>
         </section>
 
@@ -217,7 +220,7 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
               </div>
 
               {drivers.map((driver) => {
-                const isSelected = driver.name === selectedDriver
+                const isSelected = selectedDriver === driver.name
 
                 return (
                   <div
@@ -227,62 +230,49 @@ export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique
                   >
                     <div className="driver-left">
                       <div className="driver-avatar">👤</div>
-
                       <div className="driver-info">
-                        <h3 className="driver-name">{driver.name}</h3>
-                        <p className="driver-car">{driver.car}</p>
-                        <p className="driver-distance">
-                          {driver.distance} de vous
-                        </p>
+                        <h3>{driver.name}</h3>
+                        <p>{driver.car}</p>
+                        <p>{driver.distance} de vous</p>
                       </div>
                     </div>
 
                     <div className="driver-right">
-                      <div className="driver-rating">
-                        ⭐ {driver.rating}
-                      </div>
-
-                      <p className="driver-price">{driver.price}</p>
-
-                      <p className="driver-arrival">
-                        Arrivée: {driver.arrival}
-                      </p>
-
-                      {isSelected && (
-                        <button
-                          type="button"
-                          className="driver-select-btn"
-                          onClick={(event) => {
-                            event.stopPropagation()
-                            onReserve?.(driver)
-                          }}
-                        >
-                          Réserver maintenant
-                        </button>
-                      )}
+                      <div>⭐ {driver.rating}</div>
+                      <p>{driver.price}</p>
+                      <p>Arrivée: {driver.arrival}</p>
                     </div>
+
+                    {isSelected && (
+                      <button
+                        className="driver-select-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onReserve?.(driver)
+                        }}
+                      >
+                        Réserver maintenant
+                      </button>
+                    )}
                   </div>
                 )
               })}
             </>
           ) : (
             <div className="no-search-message">
-              Remplissez les champs ou utilisez la carte pour définir le trajet
+              Choisissez des villes en Haïti ou utilisez la carte
             </div>
           )}
         </section>
       </div>
 
-      {/* PROFILE SIDEBAR */}
+      {/* PROFILE */}
       {isProfileOpen && (
         <div
           className="profile-overlay"
           onClick={() => setIsProfileOpen(false)}
         >
-          <div
-            className="profile-sidebar"
-            onClick={(event) => event.stopPropagation()}
-          >
+          <div onClick={(e) => e.stopPropagation()}>
             <Profil
               onClose={() => setIsProfileOpen(false)}
               onOpenFullProfile={() => {
