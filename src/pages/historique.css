@@ -1,0 +1,129 @@
+.historique-page {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background: #f2f4f7;
+  padding: 24px;
+}
+
+.historique-card {
+  width: min(720px, 100%);
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 32px;
+}
+
+.historique-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 28px;
+}
+
+.historique-back {
+  border: none;
+  background: #e5e7eb;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.historique-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.historique-stat-card {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.historique-stat-label {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.historique-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.historique-section {
+  margin-bottom: 24px;
+}
+
+.historique-section-title {
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #0f172a;
+}
+
+.historique-trip-card {
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.trip-header {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.trip-date {
+  color: #475569;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.trip-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.trip-label {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.trip-value {
+  color: #0f172a;
+  font-weight: 700;
+  text-align: right;
+}
+
+.trip-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.trip-price {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .historique-card {
+    padding: 24px;
+  }
+
+  .historique-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

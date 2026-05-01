@@ -1,0 +1,250 @@
+.reservation-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f2f4f7;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+  position: relative;
+}
+
+.reservation-card {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* HEADER */
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.reservation-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #00BC7D;
+}
+
+.reservation-menu {
+  font-size: 1.4rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* MAP SECTION */
+.reservation-map-section {
+  width: 100%;
+  padding: 0 24px;
+  margin-top: 10px;
+   height: 300px;
+}
+
+.reservation-map-card {
+  width: 100%;
+  height: 100px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* SEARCH */
+.reservation-search-section {
+  padding: 20px 24px;
+}
+
+.reservation-search {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.search-icon {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.search-button {
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #00BC7D 0%, #00a86d 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 188, 125, 0.3);
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 188, 125, 0.4);
+}
+
+/* DRIVERS */
+.drivers-block {
+  padding: 0 24px 24px;
+}
+
+.no-search-message {
+  text-align: center;
+  padding: 60px 24px;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.drivers-count {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.driver-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.driver-card:hover {
+  transform: translateY(-2px);
+}
+
+.driver-card.selected {
+  background: #ecfdf5;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 16px 36px rgba(16, 185, 129, 0.14);
+}
+
+.driver-left {
+  display: flex;
+  gap: 14px;
+}
+
+.driver-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: grid;
+  place-items: center;
+}
+
+.driver-name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.driver-car {
+  margin: 6px 0 0;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.driver-distance {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.driver-right {
+  text-align: right;
+}
+
+.driver-rating {
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.driver-price {
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.driver-arrival {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.driver-select-btn {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 999px;
+  background: #10b981;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.driver-select-btn:hover {
+  background: #059669;
+}
+
+/* PROFILE SIDEBAR */
+.profile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.22);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 50;
+}
+
+.profile-sidebar {
+  width: min(25vw, 360px);
+  min-width: 280px;
+  height: 100%;
+}
+
+/* MOBILE */
+@media (max-width: 540px) {
+  .reservation-map-section {
+    padding: 0 16px;
+  }
+
+  .reservation-search-section {
+    padding: 16px;
+  }
+
+  .drivers-block {
+    padding: 0 16px 16px;
+  }
+}
