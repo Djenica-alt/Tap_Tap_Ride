@@ -4,16 +4,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url('../assets/Taptap.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .auth-card {
-  background: #ffffff;
+  background: #ffffff84;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  margin: 10%;
   padding: 40px;
-  width: 100%;
   max-width: 450px;
   animation: fadeInUp 0.6s ease-out;
 }
@@ -52,7 +56,7 @@
 
 .auth-card__subtitle {
   font-size: 15px;
-  color: #6b7280;
+  color: #414449;
   line-height: 1.5;
 }
 
@@ -60,6 +64,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.auth-form .input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
 }
 
 .input-group {
@@ -96,7 +106,6 @@
 
 .tap-button {
   padding: 16px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #ffffff;
   border: none;
   border-radius: 12px;
@@ -125,7 +134,7 @@
 
 .auth-card__footer p {
   font-size: 14px;
-  color: #6b7280;
+  color: #414449;
   margin-bottom: 8px;
 }
 
@@ -141,7 +150,81 @@
   text-decoration: underline;
 }
 
-/* Responsive */
+/* Sélecteur de rôle */
+.role-selector {
+  margin-bottom: 24px;
+}
+
+.role-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.role-options {
+  display: flex;
+  gap: 12px;
+}
+
+.role-option {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.role-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.role-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+.role-option:hover .role-content {
+  border-color: #667eea;
+  background: #f0f3ff;
+}
+
+.role-option.selected .role-content {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+
+.role-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.role-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.role-desc {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.role-option.selected .role-desc {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
 @media (max-width: 480px) {
   .auth-card {
     padding: 32px 24px;
@@ -191,7 +274,7 @@
 
 .forgot-password a {
   font-size: 14px;
-  color: #6b7280;
+  color: #414449;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -225,7 +308,7 @@
 
 .terms-checkbox span {
   font-size: 14px;
-  color: #6b7280;
+  color: #414449;
   line-height: 1.4;
 }
 

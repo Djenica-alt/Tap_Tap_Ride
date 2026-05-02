@@ -1,15 +1,22 @@
 import { useState } from 'react'
+import { useState } from 'react'
 import Reservation from './pages/Reservation'
 import ReservationSuccess from './pages/ReservationSuccess'
 import Mon_profil from './pages/Mon_profil'
 import Historique from './pages/Historique'
 import Profil from './pages/Profil.jsx'
+import Inscription from './pages/Inscription'
+import Accueil from './pages/Accueil'
+import Connexion from './pages/Connexion'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './App.css'
 
 function App() {
-const [reservedDriver, setReservedDriver] = useState(null)
-const [page, setPage] = useState('reservation')
+  const [count, setCount] = useState(0)
 
-return ( <div>
+  return (
+    <>
+     <div>
 {page === 'reservation' && (
 <Reservation
 onReserve={(driver) => {
@@ -51,9 +58,23 @@ onOpenHistorique={() => setPage('historique')}
     <Historique onBack={() => setPage('reservation')} />
   )}
 </div>
+    
+  
+    <Router>
+      <Routes>
+        <Route path="/" element={<Accueil />} />
+        <Route path="/inscription" element={<Inscription />} />
+        <Route path="/connexion" element={<Connexion />} />
 
+      </Routes>
+    </Router>
 
-)
+    
+  
+);
+
+    </>
+  )
 }
 
 export default App;
