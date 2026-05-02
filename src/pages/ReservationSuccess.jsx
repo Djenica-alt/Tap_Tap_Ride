@@ -7,7 +7,7 @@ export default function ReservationSuccess({ driver, onDone }) {
         <div className="success-icon">✅</div>
         <h1 className="success-title">Réservation confirmée</h1>
         <p className="success-text">
-          Votre course avec <strong>{driver.name}</strong> est bien confirmée.
+          Votre course avec <strong>{driver?.name || "Inconnu"} ✅</strong> est bien confirmée.
           Il arrive bientôt pour vous chercher à Port-au-Prince, Centre-ville.
         </p>
 
