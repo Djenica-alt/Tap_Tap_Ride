@@ -12,6 +12,7 @@ export default function Inscription() {
     phone: "",
     password: "",
     confirmPassword: "",
+    role: "passager", // "passager" ou "chauffeur"
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -67,16 +68,48 @@ export default function Inscription() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validate()) return;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
+  setIsLoading(true);
 
-    setIsLoading(true);
+  try {
+    const response = await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullname: formData.fullname,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        role: formData.role,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Erreur lors de l'inscription");
+    }
+
+    alert("✅ Inscription réussie !");
+    navigate("/connexion");
+
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    setIsLoading(false);
+  }
+
+    
     // Simulation d'inscription
     setTimeout(() => {
       setIsLoading(false);
-      alert("Inscription réussie ! Bienvenue sur TapTap Ride.");
+      const roleText = formData.role === 'chauffeur' ? 'chauffeur' : 'passager';
+      alert(`Inscription réussie ! Bienvenue sur TapTap Ride en tant que ${roleText}.`);
       navigate("/connexion");
     }, 1500);
   };
@@ -93,6 +126,41 @@ export default function Inscription() {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {/* Sélecteur de rôle */}
+          <div className="role-selector">
+            <label className="role-label">Je souhaite m'inscrire en tant que :</label>
+            <div className="role-options">
+              <label className={`role-option ${formData.role === 'passager' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="role"
+                  value="passager"
+                  checked={formData.role === 'passager'}
+                  onChange={handleChange}
+                />
+                <div className="role-content">
+                  <span className="role-icon">🚗</span>
+                  <span className="role-title">Passager</span>
+                  <span className="role-desc">Réserver des trajets</span>
+                </div>
+              </label>
+              <label className={`role-option ${formData.role === 'chauffeur' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="role"
+                  value="chauffeur"
+                  checked={formData.role === 'chauffeur'}
+                  onChange={handleChange}
+                />
+                <div className="role-content">
+                  <span className="role-icon">🚙</span>
+                  <span className="role-title">Chauffeur</span>
+                  <span className="role-desc">Proposer des trajets</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
           <div className="input-wrapper">
             <Input
               label="Nom complet"

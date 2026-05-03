@@ -1,0 +1,227 @@
+.payment-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f2f4f7;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 20px 40px;
+  box-sizing: border-box;
+}
+
+.payment-card {
+  width: min(580px, 100%);
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+  padding: 24px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.payment-back {
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payment-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.payment-section {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 22px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.badge {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.badge.blue {
+  background: #2563eb;
+}
+
+.badge.green {
+  background: #10b981;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.value {
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #475569;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 16px;
+}
+
+.driver {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f8fafc;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: #475569;
+}
+
+.driver-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.car {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.payment-section label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.payment-section label:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: #f0fdf4;
+}
+
+.payment-section input[type="radio"] {
+  accent-color: #00bc7d;
+  width: 18px;
+  height: 18px;
+}
+
+.recap {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.recap-row {
+  display: flex;
+  justify-content: space-between;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.recap-row.total {
+  font-weight: 800;
+  color: #0f172a;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 12px;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #12684b 0%, #059669 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(0, 188, 125, 0.24);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  background-color: #112e24;
+}
+
+@media (max-width: 640px) {
+  .payment-page {
+    padding: 18px 14px 28px;
+  }
+
+  .payment-card {
+    padding: 18px;
+  }
+
+  .payment-section {
+    padding: 18px;
+  }
+
+  .summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
