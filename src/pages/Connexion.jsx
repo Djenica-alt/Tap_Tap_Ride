@@ -46,7 +46,7 @@ export default function Connexion() {
     setTimeout(() => {
       setIsLoading(false);
       alert("Connexion réussie ! Bienvenue sur TapTap Ride.");
-      navigate("/");
+      navigate("/reservation"); // <-- redirection vers Reservation
     }, 1000);
   };
 
@@ -94,7 +94,7 @@ export default function Connexion() {
 
         <div className="auth-card__footer">
           <p>Pas encore de compte ?</p>
-          <Link className="auth-link" to="/inscription">
+          <Link className="auth-link" to="/Inscription">
             S'inscrire
           </Link>
         </div>

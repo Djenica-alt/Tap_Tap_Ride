@@ -1,25 +1,27 @@
 /* Styles globaux pour les pages d'authentification */
 .auth-page {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.5), 
       rgba(0, 0, 0, 0.5)
-    ), url('../assets/Taptap.jpg');
+    ), url('../assets/backk.jpeg');
   background-size: cover;
   background-position: center;
 }
 
 .auth-card {
-  background: #ffffff84;
+  background: #ffffff4f;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  margin: 10%;
-  padding: 40px;
+  margin: 20px;
+  padding: 20px;
   max-width: 450px;
-  animation: fadeInUp 0.6s ease-out;
+  
+  max-height: 100vh;      
+  overflow-y: auto;      
+
 }
 
 @keyframes fadeInUp {
@@ -344,7 +346,7 @@
   left: 50%;
   margin-left: -10px;
   margin-top: -10px;
-  border: 2px solid #ffffff;
+  border: 2px solid #ffffffd3;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;

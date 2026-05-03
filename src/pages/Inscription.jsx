@@ -12,7 +12,7 @@ export default function Inscription() {
     phone: "",
     password: "",
     confirmPassword: "",
-    role: "passager", // "passager" ou "chauffeur"
+    role: "passager", 
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -95,7 +95,7 @@ const handleSubmit = async (e) => {
       throw new Error(data.message || "Erreur lors de l'inscription");
     }
 
-    alert("✅ Inscription réussie !");
+    alert("Inscription réussie !");
     navigate("/connexion");
 
   } catch (error) {
@@ -119,10 +119,7 @@ const handleSubmit = async (e) => {
       <section className="auth-card">
         <div className="auth-card__header">
           <p className="auth-card__label">Créer un compte</p>
-          <h1>Rejoignez TapTap Ride</h1>
-          <p className="auth-card__subtitle">
-            Inscrivez-vous pour localiser, réserver et gérer vos trajets.
-          </p>
+        
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -139,7 +136,7 @@ const handleSubmit = async (e) => {
                   onChange={handleChange}
                 />
                 <div className="role-content">
-                  <span className="role-icon">🚗</span>
+                  <span className="role-icon"></span>
                   <span className="role-title">Passager</span>
                   <span className="role-desc">Réserver des trajets</span>
                 </div>
@@ -153,7 +150,7 @@ const handleSubmit = async (e) => {
                   onChange={handleChange}
                 />
                 <div className="role-content">
-                  <span className="role-icon">🚙</span>
+                  <span className="role-icon"></span>
                   <span className="role-title">Chauffeur</span>
                   <span className="role-desc">Proposer des trajets</span>
                 </div>
