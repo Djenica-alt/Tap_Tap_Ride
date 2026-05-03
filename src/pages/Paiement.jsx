@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Payment.css'
+import './Paiement.css'
 
 export default function Payment({ driver, trip, onBack, onConfirm }) {
   const [paymentMethod, setPaymentMethod] = useState('cash')
