@@ -1,4 +1,4 @@
-import './Historique.css'
+import './historique.css'
 
 export default function Historique({ onBack }) {
   const trips = [

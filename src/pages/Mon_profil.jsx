@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Mon_profil.css'
+import './mon_profil.css'
 
 export default function Mon_profil({ onBack, onOpenHistorique }) {
   const [profilePicture, setProfilePicture] = useState(null)
