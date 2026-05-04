@@ -22,7 +22,7 @@ export default function Accueil() {
                 <Button onClick={handleStart}>Commencer maintenant</Button>
             </div>
 
-            <section>
+            <section className='features-section'>
                 <h3 className='features-title'> Pourquoi choisir Tap Tap Ride ?</h3>
                 <div className='features'>
                         <div className="card">

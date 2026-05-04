@@ -3,7 +3,7 @@ import Profil from './Profil'
 
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
-import "../mapConfig"
+import "../MapConfig.js"
 
 export default function Reservation({ onReserve, onOpenProfile, onOpenHistorique }) {
   const [selectedDriver, setSelectedDriver] = useState(null)
