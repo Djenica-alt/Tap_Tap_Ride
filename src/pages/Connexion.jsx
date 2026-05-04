@@ -55,7 +55,6 @@ export default function Connexion() {
       <section className="auth-card">
         <div className="auth-card__header">
           <p className="auth-card__label">Se connecter</p>
-          <h1>Bienvenue sur TapTap Ride</h1>
           <p className="auth-card__subtitle">
             Accédez à votre compte et réservez votre trajet en un clic.
           </p>

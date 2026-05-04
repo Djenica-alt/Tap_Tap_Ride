@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
       rgba(0, 0, 0, 0.5), 
       rgba(0, 0, 0, 0.5)
     ), url('../assets/backk.jpeg');
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 }
 
 .auth-card {
@@ -149,6 +149,7 @@
 
 .auth-link:hover {
   color: #272628dd;
+  color: #00BC7D;
   text-decoration: underline;
 }
 
@@ -203,6 +204,7 @@
 .role-option.selected .role-content {
   border-color: #667eea;
   background: linear-gradient(135deg, #00BC7D 0%, #764ba24b 100%);
+  background: #00BC7D;
   color: #ffffff;
 }
 
