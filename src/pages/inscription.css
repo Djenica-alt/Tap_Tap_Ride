@@ -92,7 +92,7 @@
   border-radius: 12px;
   font-size: 15px;
   transition: all 0.3s ease;
-  background: #f9fafb;
+
 }
 
 .input-group input:focus {
@@ -251,6 +251,7 @@
 .input-wrapper {
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 /* Error messages */
