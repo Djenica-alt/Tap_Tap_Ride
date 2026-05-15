@@ -53,7 +53,7 @@ export default function Accueil() {
                         <div className="icon-circle">
                         <FaClock size={50} />
                         </div>
-                        <h3>Géolocalisation</h3>
+                        <h3>Réservation rapide</h3>
                         <p>Réservez votre course en quelques secondes seulement.</p>
                     </div>
                 </div>
